@@ -1,0 +1,93 @@
+/* base.css - Reset, body, links, loading */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background-color: #f6f6f6;
+    color: #333;
+    min-height: 100vh;
+    line-height: 1.55;
+}
+
+a {
+    text-decoration: none;
+    color: #2a5db0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* accent color class used in headings */
+.accent-text {
+    color: #d63031;
+}
+
+/* count highlight in results bars */
+.count-highlight {
+    color: #2a5db0;
+    font-weight: 700;
+}
+
+/* loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.loader {
+    text-align: center;
+}
+
+.loader p {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #ddd;
+    border-top: 3px solid #2a5db0;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto;
+}
+
+.spinner.small {
+    width: 24px;
+    height: 24px;
+    border-width: 2.5px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

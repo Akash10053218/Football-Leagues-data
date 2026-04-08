@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Liga Hub — Your Corner of Spanish Football</title>
+    <meta name="description" content="Everything about Spanish La Liga in one place — clubs, fixtures, results, and stories from Spain's top football league.">
+    <link rel="stylesheet" href="style/base.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/controls.css">
+    <link rel="stylesheet" href="style/leagueDetail.css">
+    <link rel="stylesheet" href="style/teams.css">
+    <link rel="stylesheet" href="style/matches.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/responsive.css">
+    <link rel="stylesheet" href="style/darkmode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- loading screen -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Getting things ready…</p>
+        </div>
+    </div>
+
+    <!-- header -->
+    <header id="main-header" class="header">
+        <div class="header-inside">
+            <a id="logo-home" href="#" class="logo-link">🇪🇸 La Liga<b>Hub</b></a>
+            <nav class="nav-links">
+                <a class="nav-link active" id="nav-home" href="#">Home</a>
+                <a class="nav-link" id="nav-teams" href="#">Teams</a>
+                <a class="nav-link" id="nav-matches" href="#">Matches</a>
+                <button id="theme-toggle" class="theme-toggle-btn" title="Switch between dark and light mode" aria-label="Toggle theme">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME VIEW -->
+    <main id="home-view" class="view active">
+        <div class="hero-section la-liga-hero">
+            <h1>Welcome to <span class="accent-text">La Liga</span> Hub</h1>
+            <p class="hero-subtitle">Your go-to spot for everything Spanish football — clubs, results, and the stories behind every matchday.</p>
+        </div>
+        <div id="league-overview-container"></div>
+    </main>
+
+    <!-- TEAMS VIEW -->
+    <section id="teams-view" class="view">
+        <div class="hero-section la-liga-hero teams-hero">
+            <h1>Meet the <span class="accent-text">Clubs</span></h1>
+            <p>Every team competing in La Liga this season, from the giants to the up-and-comers.</p>
+        </div>
+        <div class="controls-area">
+            <div class="controls-box">
+                <div class="search-box">
+                    <input type="text" id="team-search-input" placeholder="Try 'Barcelona' or 'Bernabéu'…" autocomplete="off" aria-label="Search teams">
+                    <button id="clear-team-search" class="clear-btn" style="display:none;" aria-label="Clear search">✕</button>
+                </div>
+                <div class="filters">
+                    <div class="filter-item">
+                        <label for="team-sort-select">Sort by</label>
+                        <select id="team-sort-select">
+                            <option value="name-asc">Name (A → Z)</option>
+                            <option value="name-desc">Name (Z → A)</option>
+                            <option value="year-asc">Oldest first</option>
+                            <option value="year-desc">Newest first</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="results-bar">
+                    Showing <span id="team-results-count" class="count-highlight">0</span> clubs
+                </div>
+            </div>
+        </div>
+        <div class="grid-area">
+            <div class="teams-grid" id="all-teams-grid"></div>
+        </div>
+    </section>
+
+    <!-- MATCHES VIEW -->
+    <section id="all-matches-view" class="view">
+        <div class="hero-section la-liga-hero matches-hero">
+            <h1>Matchday <span class="accent-text">Results & Fixtures</span></h1>
+            <p>Pick a season and see what happened — or what's coming up next.</p>
+        </div>
+
+        <div class="controls-area">
+            <div class="controls-box">
+                <div class="filters">
+                    <div class="filter-item">
+                        <label for="am-year-input">Year</label>
+                        <input type="number" id="am-year-input" placeholder="e.g. 2024" min="1900" max="2030" aria-label="Season year">
+                    </div>
+                    <div class="filter-item">
+                        <label for="am-season-select">Season</label>
+                        <select id="am-season-select" aria-label="Season format">
+                            <option value="">— Pick a year first —</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="am-status-filter">Show</label>
+                        <select id="am-status-filter">
+                            <option value="all">All matches</option>
+                            <option value="finished">Results only</option>
+                            <option value="upcoming">Upcoming only</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filters filters-row-two">
+                    <div class="filter-item filter-item-wide">
+                        <label for="am-team-search">Find a team</label>
+                        <input type="text" id="am-team-search" placeholder="Type a club name…" aria-label="Filter by team name">
+                    </div>
+                    <div class="filter-item">
+                        <label for="am-round-filter">Matchday</label>
+                        <select id="am-round-filter">
+                            <option value="all">All rounds</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <button class="fetch-btn" id="am-fetch-btn">Load matches</button>
+                    </div>
+                </div>
+                <div class="results-bar" id="am-results-info" style="display:none;">
+                    Found <span id="am-results-count" class="count-highlight">0</span> matches
+                </div>
+                <div class="results-bar results-bar-note">
+                    Showing results for <strong>Spanish La Liga</strong> only
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-area">
+            <div id="am-initial-state" class="initial-msg">
+                <div class="initial-msg-icon">📅</div>
+                <h3>Pick a season to get started</h3>
+                <p>Enter the year above, choose a season format, and hit "Load matches" to see fixtures and results.</p>
+            </div>
+            <div id="am-loading" class="loading-msg" style="display:none;">
+                <div class="spinner small"></div>
+                <p>Fetching matches…</p>
+            </div>
+            <div id="am-matches-list" class="matches-list"></div>
+        </div>
+    </section>
+
+    <!-- TEAM DETAIL VIEW -->
+    <section id="team-detail-view" class="view">
+        <div class="back-bar">
+            <button class="back-btn" id="btn-back-team">← Back to all teams</button>
+        </div>
+        <div id="team-detail-container"></div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+        <p>Made with care by <a href="#">La Liga Hub</a> · Data from <a href="https://www.thesportsdb.com/" target="_blank" rel="noopener noreferrer">TheSportsDB</a></p>
+        <p class="footer-small">Not affiliated with La Liga. Just fans who love the game. © 2026</p>
+    </footer>
+
+    <!-- JS files split by feature -->
+    <script src="api.js"></script>
+    <script src="theme.js"></script>
+    <script src="leagues.js"></script>
+    <script src="leagueDetail.js"></script>
+    <script src="teams.js"></script>
+    <script src="matches.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

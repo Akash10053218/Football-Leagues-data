@@ -1,0 +1,82 @@
+/* header.css - Header, navigation, theme toggle */
+
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #d63031;
+}
+
+.header-inside {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+}
+
+.logo-link {
+    color: white;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.logo-link:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.logo-link b {
+    color: #74b9ff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #adb5bd;
+    padding: 7px 13px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: color 0.15s, background 0.15s;
+}
+
+.nav-link:hover {
+    color: white;
+    background: rgba(255,255,255,0.08);
+    text-decoration: none;
+}
+
+.nav-link.active {
+    color: white;
+    background: #d63031;
+}
+
+/* theme toggle button */
+.theme-toggle-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: background 0.15s;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
